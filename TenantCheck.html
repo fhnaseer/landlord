@@ -3,12 +3,68 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+<div class="bar bar-header bar-light">
+    <button class="button icon ion-navicon"></button>
+    <h1 class="title">Tenant Check</h1>
+</div>
 
-  {{> hello}}
+<div class="content">
+<h2>Search for Tenant</h2>
+
+{{> search}}
+{{> response}}
+
+</div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="search">
+    <form class="cnic-search">
+        <div class="list">
+
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="CNIC">
+                </label>
+                <button type="submit" class="button button-small">
+                    Search
+                </button>
+            </div>
+
+        </div>
+    </form>
 </template>
+
+<template name="response">
+    {{> personal}}
+    {{> basic}}
+    <div class="list">
+        {{#each evictions}}
+            {{> eviction}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="personal">
+    <div class="card">
+        <div class="item item-divider">Personal Information</div>
+        <div class="item item-text-wrap">{{name}}</div>
+        <div class="item item-text-wrap">{{cnic}}</div>
+    </div>
+</template>
+
+
+<template name="basic">
+    <div class="card">
+        <div class="item item-divider">Basic</div>
+        <div class="item item-text-wrap">{{riskIndex}}</div>
+    </div>
+</template>
+
+<template name="eviction">
+    <div class="item item-divider">Eviction</div>
+    <div class="item">{{case}}</div>
+    <div class="item">{{filing}}</div>
+    <div class="item">{{judge}}</div>
+    <div class="item">{{order}}</div>
+</template>
+
